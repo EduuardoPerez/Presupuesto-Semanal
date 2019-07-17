@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import Error from './Error'
+import shortid from 'shortid';
 
 function Formulario(props){
+
+  const {guardarGasto} = props;
 
   // state
   const[nombreGasto, guardarNombreGasto] = useState('');
@@ -18,7 +21,23 @@ function Formulario(props){
       return;
     }
 
+    // Construir objeto de gasto
+    const gasto = {
+      nombreGasto,
+      cantidadGasto,
+      id: shortid.generate()
+    }
+
     // Pasar gasto al componente principal
+    guardarGasto(gasto);
+    
+    // Eliminar alerta
+    guardarError(false);
+
+    // Reiniciar el form
+    guardarNombreGasto('');
+    guardarCantidadGasto('');
+
   }
 
   return(
@@ -27,7 +46,7 @@ function Formulario(props){
     >
       <h2>Agrega tus gastos aquí</h2>
 
-      {error ? <Error mensaje ='Ambos campos son obligatorios o la cantidad del gasto es incorrecta'/> : null }
+      {error ? <Error mensaje ='Verificar que ambos campos contengan información o agregue un valor valido en el campo de gasto'/> : null }
 
       <div className="campo">
         <label>Nombre del gasto</label>
@@ -36,6 +55,7 @@ function Formulario(props){
           className="u-full-width"
           placeholder="Ejemplo: Transporte"
           onChange={e => guardarNombreGasto(e.target.value)}
+          value={nombreGasto}
         />
       </div>
       <div className="campo">
@@ -45,6 +65,7 @@ function Formulario(props){
           className="u-full-width"
           placeholder="Ejemplo: 300"
           onChange={e => guardarCantidadGasto( parseInt(e.target.value), 10) }
+          value={cantidadGasto}
         />
         <input type="submit" className="button-primary u-full-width" value="Agregar gasto"/>
       </div>
