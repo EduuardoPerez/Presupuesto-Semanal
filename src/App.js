@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Pregunta from './components/Pregunta'
-import Formulario from './components/Formulario'
-import Listado from './components/Listado'
-import ControlPresupuesto from './components/ControlPresupuesto'
+import Pregunta from './components/Pregunta';
+import Formulario from './components/Formulario';
+import Listado from './components/Listado';
+import ControlPresupuesto from './components/ControlPresupuesto';
 
 function App() {
   
@@ -10,19 +10,23 @@ function App() {
   const[presupuesto, guardarPresupuesto] = useState(0);
   const[restante, guardarRestante] = useState(0);
   const[preguntaPresupuesto, guardarPreguntaPresupuesto] = useState(true);
-  const[crearGasto, guardarCrearGasto] = useState(false)
+  const[crearGasto, guardarCrearGasto] = useState(false);
   const[gasto, guardarGasto] = useState({});
   const[gastos, guardarGastos] = useState([]);
 
   useEffect(() => {
     if(crearGasto){
-      const listadoGastos = [...gastos, gasto]
+      const listadoGastos = [...gastos, gasto];
       guardarGastos(listadoGastos);
+
+      // Restar el presupuesto
+      const presupuestoRestante = restante - gasto.cantidadGasto;
+      guardarRestante(presupuestoRestante);
 
       // Una vez agregado, vuelve a false
       guardarCrearGasto(false);
     }
-  }, [crearGasto])
+  }, [crearGasto, gasto, gastos, restante]);
 
   return (
     <div className="App container">

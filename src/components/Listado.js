@@ -1,5 +1,5 @@
 import React from 'react';
-import Gasto from './Gasto'
+import Gasto from './Gasto';
 
 function Listado({gastos}){
 

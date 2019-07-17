@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Error from './Error'
+import Error from './Error';
 import shortid from 'shortid';
 
 function Formulario(props){
@@ -16,7 +16,7 @@ function Formulario(props){
     e.preventDefault();
 
     // Validar
-    if(cantidadGasto<=1 || isNaN(cantidadGasto) || cantidadGasto===''){
+    if(cantidadGasto<=1 || isNaN(cantidadGasto) || nombreGasto===''){
       guardarError(true);
       return;
     }
@@ -42,6 +42,7 @@ function Formulario(props){
   }
 
   return(
+    
     <form
       onSubmit={agregarGasto}
     >
@@ -65,11 +66,12 @@ function Formulario(props){
           type="number"
           className="u-full-width"
           placeholder="Ejemplo: 300"
-          onChange={e => guardarCantidadGasto( parseInt(e.target.value), 10) }
+          onChange={e => guardarCantidadGasto( parseInt(e.target.value, 10) )}
           value={cantidadGasto}
         />
-        <input type="submit" className="button-primary u-full-width" value="Agregar gasto"/>
       </div>
+      <input type="submit" className="button-primary u-full-width" value="Agregar gasto"/>
+
     </form>
   );
 }

@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import Error from './Error'
+import Error from './Error';
 
 function Pregunta(props){
 
@@ -23,7 +23,7 @@ function Pregunta(props){
     guardarError(false);
     guardarPresupuesto(cantidad);
     guardarRestante(cantidad);
-    guardarPreguntaPresupuesto(false)
+    guardarPreguntaPresupuesto(false);
   }
 
     return(
