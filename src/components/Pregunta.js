@@ -1,6 +1,8 @@
 import React, { Fragment, useState } from 'react';
 
-function Pregunta(){
+function Pregunta(props){
+
+  const { guardarPresupuesto } = props;
 
   // Definir el state
   const [cantidad, guardarCantidad] = useState(0);
@@ -17,6 +19,8 @@ function Pregunta(){
     }
 
     // Si pasa la validación
+    guardarError(false);
+    guardarPresupuesto(cantidad);
   }
 
     return(
